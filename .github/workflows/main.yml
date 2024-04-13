@@ -1,0 +1,28 @@
+name: Deploy to Website
+
+on:
+  push:
+    branches:
+      - main  # Adjust branch name as needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install  # Replace with your package manager if using a different one
+
+      - name: Build Application
+        run: npm run build  # Replace with your build command
+
+      - name: Deploy to Website
+        run: |
+          # Add commands to deploy your application to your website
+          # For example:
+          # scp -r ./dist/* user@your-website:/path/to/destination
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Add SSH private key as a secret
